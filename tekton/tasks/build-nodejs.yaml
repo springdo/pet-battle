@@ -30,6 +30,7 @@ spec:
           npm i
     - name: lint
       image: registry.access.redhat.com/ubi8/$(inputs.params.NODE_VERSION)
+      workingDir: $(workspaces.source.path)
       command: ['/bin/bash', '-c']
       args:
         - |-
