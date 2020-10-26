@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: fe-pb-123
+spec:
+  pipelineRef:
+    name: fe-pet-battle
+  params:
+    - name: git-url
+      value: https://github.com/springdo/pet-battle.git
+  workspaces:
+    - name: shared-workspace
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 2Gi
