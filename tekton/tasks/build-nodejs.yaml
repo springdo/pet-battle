@@ -18,8 +18,8 @@ spec:
       image: registry.access.redhat.com/ubi8/$(inputs.params.NODE_VERSION)
       workingDir: $(workspaces.source.path)
       script: |-
-        # echo -n "$(npm run version --silent)" > $(results.commit.path)/APP_VERSION
-        # cat $(results.commit.path)/APP_VERSION
+        echo -n "$(npm run version --silent)" > $(results.APP_VERSION.path)
+        cat $(results.APP_VERSION.path)
         echo TODO 🦆🦆🦆
         printenv
     - name: install-deps
