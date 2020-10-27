@@ -16,6 +16,7 @@ spec:
   steps:
     - name: set-app-version
       image: registry.access.redhat.com/ubi8/$(inputs.params.NODE_VERSION)
+      workingDir: $(workspaces.source.path)
       script: |-
         # echo -n "$(npm run version --silent)" > $(results.commit.path)/APP_VERSION
         # cat $(results.commit.path)/APP_VERSION
@@ -37,12 +38,14 @@ spec:
           npm run lint
     - name: test
       image: registry.access.redhat.com/ubi8/$(inputs.params.NODE_VERSION)
+      workingDir: $(workspaces.source.path)
       command: ['/bin/bash', '-c']
       args:
         - |-
           npm run test:ci
     - name: build
       image: registry.access.redhat.com/ubi8/$(inputs.params.NODE_VERSION)
+      workingDir: $(workspaces.source.path)
       command: ['/bin/bash', '-c']
       args:
         - |-
